@@ -1,14 +1,14 @@
 ---
-import {PiggyBank, MoveRight} from 'lucide-astro'
+import { PiggyBank, MoveRight,  X, Menu } from "lucide-astro";
 
 const navItems = [
-  { name: 'About', href: '/about' },
-  { name: 'Pricing', href: '/pricing' },
-  { name: 'Features', href: '/features' },
+  { name: "About", href: "/about" },
+  { name: "Pricing", href: "/pricing" },
+  { name: "Features", href: "/features" },
 ];
 ---
 
-<header class="site-header transition-colors duration-500 hover:bg-white ">
+<header class="site-header transition-colors duration-500 hover:bg-(--color-surface)">
   <div class="container-site">
     <div class="header-inner flex justify-between items-center md:py-8">
 
@@ -17,20 +17,20 @@ const navItems = [
 
         <!-- Logo -->
         <div class="header-logo">
-          <a href="/" class="logo-link flex items-center gap-2 text-brand">
-            <PiggyBank class="logo-icon" />
-            <span class="logo-text text-2xl uppercase font-bold text-primary">
-              Minted
+          <a href="/" class="logo-link flex items-center gap-1 text-brand">
+            <PiggyBank class="logo-icon" size={40} />
+            <span class="logo-text text-3xl font-bold text-primary">
+              minted
             </span>
           </a>
         </div>
 
-        <!-- Primary Navigation -->
+        <!-- Primary Navigation (desktop) -->
         <div class="hidden md:flex gap-8">
-           {navItems.map(item => (
+          {navItems.map((item) => (
             <a href={item.href} class="text-md capitalize font-medium nav-link">
-            {item.name}
-             </a>
+              {item.name}
+            </a>
           ))}
         </div>
 
@@ -39,25 +39,137 @@ const navItems = [
       <!-- RIGHT SIDE -->
       <div class="header-right flex gap-12 items-center">
 
-        <!-- Login -->
-        <div class="header-auth">
+        <!-- Login (desktop only if you want it hidden on mobile) -->
+        <div class="hidden md:block header-auth">
           <a href="/login" class="login-link font-medium nav-link">Login</a>
         </div>
 
-        <!-- CTA Group -->
-        <div class="flex gap-4">
-          <a href="/book-demo" class="btn btn-secondary">
+        <!-- CTA Group (desktop only) -->
+        <div class="hidden md:flex gap-4">
+          <a href="/contact" class="btn btn-secondary">
             Book a demo
           </a>
 
-          <a href="/signup" class="btn btn-primary gap-2">
+          <a href="/login" class="btn btn-primary gap-2">
             Try Minted
-            <MoveRight  />
+            <MoveRight />
           </a>
         </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button
+  id="menu-toggle"
+  type="button"
+  aria-label="Open menu"
+  aria-controls="mobile-menu"
+  aria-expanded="false"
+  class="md:hidden w-12 h-12 rounded-full flex items-center justify-center"
+>
+  <Menu class="text-primary" size={24} strokeWidth={2} />
+</button>
+
 
       </div>
 
     </div>
   </div>
 </header>
+
+<!-- Mobile Menu Panel -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-white z-40 translate-x-full transition-transform duration-500 ease-in-out md:hidden"
+  aria-hidden="true"
+>
+  <!-- Top bar inside mobile menu -->
+  <div class="flex justify-end p-6">
+    <button
+  id="menu-close"
+  type="button"
+  aria-label="Close menu"
+  class="w-12 h-12 rounded-full bg-brand-soft flex items-center justify-center transition-transform duration-200 hover:scale-105"
+>
+  <X class="text-primary" size={20} strokeWidth={2} />
+</button>
+
+  </div>
+
+  <!-- Menu content -->
+  <div class="flex flex-col gap-8 px-4">
+    {navItems.map((item) => (
+      <a href={item.href} class="text-2xl font-black">
+        {item.name}
+      </a>
+    ))}
+
+    <a href="/login" class="text-2xl font-black text-brand">
+      Login
+    </a>
+
+    <div class=" gap-4 hidden">
+      <a href="/book-demo" class="btn btn-secondary">
+        Book a demo
+      </a>
+
+      <a href="/signup" class="btn btn-primary gap-2">
+        Try Minted
+        <MoveRight />
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const btn = document.getElementById('menu-toggle');
+  const closeBtn = document.getElementById('menu-close');
+  const menu = document.getElementById('mobile-menu');
+  const lines = btn?.querySelectorAll('span');
+
+  function toggleMenu(forceState?: boolean) {
+    if (!btn || !menu) return;
+
+    const isOpen =
+      forceState !== undefined
+        ? !forceState
+        : btn.getAttribute('aria-expanded') === 'true';
+
+    const nextState = !isOpen;
+
+    // Slide panel
+    menu.classList.toggle('translate-x-full', !nextState);
+
+    // Scroll lock
+    document.body.classList.toggle('overflow-hidden', nextState);
+
+    // ARIA
+    btn.setAttribute('aria-expanded', String(nextState));
+    menu.setAttribute('aria-hidden', String(!nextState));
+
+    // Hamburger → X animation
+    if (lines && lines.length >= 2) {
+      lines[0].classList.toggle('rotate-45', nextState);
+      lines[0].classList.toggle('translate-y-[4px]', nextState);
+      lines[1].classList.toggle('-rotate-45', nextState);
+      lines[1].classList.toggle('-translate-y-[4px]', nextState);
+    }
+  }
+
+  // Open/close from hamburger
+  btn?.addEventListener('click', () => toggleMenu());
+
+  // Close from close button
+  closeBtn?.addEventListener('click', () => toggleMenu(false));
+
+  // Close when clicking a link inside mobile menu
+  menu?.addEventListener('click', (e) => {
+    if (!(e.target instanceof HTMLElement)) return;
+    if (e.target.closest('a')) toggleMenu(false);
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') toggleMenu(false);
+  });
+</script>
+
