@@ -1,72 +1,74 @@
-<footer class="site-footer">
+<footer class="site-footer bg-surface">
   <div class="container-site">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <!-- Brand / summary -->
-        <div class="footer-brand">
-          <a href="/" class="footer-logo">
-            <span class="footer-logo-text">minted</span>
+    <div class="flex flex-col gap-12 py-8">
+
+      <!-- Top -->
+      <div class="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+
+        <!-- Brand -->
+        <div class="max-w-sm">
+          <a href="/" class="inline-block">
+            <span class="text-2xl font-bold">minted</span>
           </a>
-          <p class="footer-description">
+          <p class="mt-4 text-secondary leading-relaxed">
             Run your business with clarity across projects, people, and finances.
           </p>
         </div>
 
-        <!-- Footer nav columns -->
-        <div class="footer-columns">
-          <nav class="footer-col" aria-label="Product">
-            <h2 class="footer-heading">Product</h2>
-            <ul class="footer-list">
-              <li><a class="footer-link" href="/features">Features</a></li>
-              <li><a class="footer-link" href="/pricing">Pricing</a></li>
-             
-              <li><a class="footer-link" href="/login">Login</a></li>
+        <!-- Columns -->
+        <div class="grid gap-y-10 gap-x-30 sm:grid-cols-2 lg:grid-cols-3">
+          <nav aria-label="Product">
+            <h2 class="text-sm font-semibold mb-4">Product</h2>
+            <ul class="space-y-3">
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/features">Features</a></li>
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/pricing">Pricing</a></li>
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/login">Login</a></li>
             </ul>
           </nav>
 
-          <nav class="footer-col" aria-label="Company">
-            <h2 class="footer-heading">Company</h2>
-            <ul class="footer-list">
-              <li><a class="footer-link" href="/about">About</a></li>
-              <li><a class="footer-link" href="/careers">Careers</a></li>
-              <li><a class="footer-link" href="/contact">Contact</a></li>
+          <nav aria-label="Company">
+            <h2 class="text-sm font-semibold mb-4">Company</h2>
+            <ul class="space-y-3">
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/about">About</a></li>
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/careers">Careers</a></li>
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/contact">Contact</a></li>
             </ul>
           </nav>
 
-
-          <nav class="footer-col" aria-label="Compare">
-            <h2 class="footer-heading">Compare</h2>
-            <ul class="footer-list">
-              <li><a class="footer-link" href="/compare/clickup">ClickUp</a></li>
-              <li><a class="footer-link" href="/compare/harvest">Harvest</a></li>
-              <li><a class="footer-link" href="/compare/scoro">Scoro</a></li>
+          <nav aria-label="Compare">
+            <h2 class="text-sm font-semibold mb-4">Compare</h2>
+            <ul class="space-y-3">
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/compare/clickup">ClickUp</a></li>
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/compare/harvest">Harvest</a></li>
+              <li><a class="text-secondary hover:text-brand transition-colors" href="/compare/scoro">Scoro</a></li>
             </ul>
           </nav>
         </div>
+
       </div>
 
-      <div class="footer-bottom">
-        <!-- Social -->
-        <nav class="footer-social" aria-label="Social">
-          <ul class="footer-social-list">
-            <li><a class="footer-social-link" href="#" rel="me">LinkedIn</a></li>
-            <li><a class="footer-social-link" href="#" rel="me">X</a></li>
-            <li><a class="footer-social-link" href="#" rel="me">YouTube</a></li>
+      <!-- Bottom -->
+      <div class="pt-8 border-t border-border flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <nav aria-label="Social">
+          <ul class="flex gap-6">
+            <li><a class="text-muted hover:text-primary transition-colors" href="#" rel="me">LinkedIn</a></li>
+            <li><a class="text-muted hover:text-primary transition-colors" href="#" rel="me">X</a></li>
+            <li><a class="text-muted hover:text-primary transition-colors" href="#" rel="me">YouTube</a></li>
           </ul>
         </nav>
 
-        <!-- Legal -->
-        <nav class="footer-legal" aria-label="Legal">
-          <ul class="footer-legal-list">
-            <li><a class="footer-legal-link" href="/privacy">Privacy</a></li>
-            <li><a class="footer-legal-link" href="/terms">Terms</a></li>
+        <nav aria-label="Legal">
+          <ul class="flex gap-6">
+            <li><a class="text-muted hover:text-primary transition-colors" href="/privacy">Privacy</a></li>
+            <li><a class="text-muted hover:text-primary transition-colors" href="/terms">Terms</a></li>
           </ul>
         </nav>
 
-        <p class="footer-copyright">
-          © <span class="footer-year">2026</span> Minted. All rights reserved.
+        <p class="text-sm text-muted">
+          © 2026 Minted. All rights reserved.
         </p>
       </div>
+
     </div>
   </div>
 </footer>

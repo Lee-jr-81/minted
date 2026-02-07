@@ -1,26 +1,31 @@
+/* =========================================
+   THEME (Tailwind utility generation)
+   ========================================= */
+
+@theme {
+  /* Colors */
+  --color-bg: #eff3f1;
+  --color-surface: #f8f8f8;
+  --color-border: #e5e5e5;
+
+  --color-text-primary: #1b1b1b;
+  --color-text-secondary: #666666;
+  --color-text-muted: #999999;
+
+  --color-brand: #00992e;
+  --color-brand-soft: #e8fbee;
+
+  /* Typography */
+  --font-sans:
+    "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Arial, sans-serif;
+}
+
+/* =========================================
+   BASE (global element defaults)
+   ========================================= */
+
 @layer base {
-  :root {
-    /* ===== BRAND COLOURS ===== */
-
-    --color-bg: #eff3f1;
-    --color-surface: #f8f8f8;
-    --color-border: #e5e5e5;
-
-    --color-text-primary: #1b1b1b;
-    --color-text-secondary: #666666;
-    --color-text-muted: #999999;
-
-    --color-brand: #00992e; /* main brand */
-    --color-brand-soft: #e8fbee; /* light variant */
-
-    /* ===== TYPOGRAPHY ===== */
-
-    --font-sans:
-      "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-      Arial, sans-serif;
-  }
-
-  /* Apply globally */
   body {
     font-family: var(--font-sans);
     background-color: var(--color-bg);
@@ -28,90 +33,67 @@
   }
 }
 
+/* =========================================
+   UTILITIES (project-level primitives)
+   ========================================= */
+
 @layer utilities {
-  .bg-brand {
-    background-color: var(--color-brand);
-  }
-
-  .bg-surface {
-    background-color: var(--color-surface);
-  }
-
-  .text-primary {
-    color: var(--color-text-primary);
-  }
-
-  .text-secondary {
-    color: var(--color-text-secondary);
-  }
-
-  .text-brand {
-    color: var(--color-brand);
-  }
-
-  .bg-brand-soft {
-    background-color: var(--color-brand-soft);
-  }
-
-  /* This controls the standard width for the projects containers, along with the @media classes below */
   .container-site {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-
-    /* Mobile / tablet side gutters */
-    padding-left: 1.5rem; /* 24px */
+    padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
-  /* Desktop container width */
   @media (min-width: 1280px) {
     .container-site {
       max-width: 1280px;
     }
   }
 
-  /* Optional: cap for very large monitors */
   @media (min-width: 1536px) {
     .container-site {
       max-width: 1600px;
     }
   }
 
-  /* this controls the standard vertical heights of the site sections. */
   .section-site {
-    padding-top: 4rem; /* 64px */
+    padding-top: 4rem;
     padding-bottom: 4rem;
   }
 
   @media (min-width: 768px) {
     .section-site {
-      padding-top: 5rem; /* 80px */
+      padding-top: 5rem;
       padding-bottom: 5rem;
     }
   }
 
   @media (min-width: 1280px) {
     .section-site {
-      padding-top: 6rem; /* 96px */
+      padding-top: 6rem;
       padding-bottom: 6rem;
     }
   }
 }
 
-/* Reusable components in here like buttons and cards etc*/
+/* =========================================
+   COMPONENTS (reusable UI primitives)
+   ========================================= */
+
 @layer components {
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    height: 40px; /* ← fixed button height */
-    padding: 0 1.25rem; /* horizontal padding only */
+    height: 40px;
+    padding: 0 1.25rem;
 
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: 600;
-    line-height: 1; /* keeps vertical centering tight */
+    line-height: 1;
 
     text-decoration: none;
     white-space: nowrap;
@@ -131,168 +113,9 @@
     color: #ffffff;
   }
 
-  .btn-primary:hover {
-    background-color: color-mix(in srgb, var(--color-brand) 90%, black);
-  }
-
   .btn-secondary {
     background-color: transparent;
     color: var(--color-brand);
-    border-color: var(--color-brand); /* outline = text colour */
-  }
-
-  .btn-secondary:hover {
-    background-color: color-mix(in srgb, var(--color-brand) 8%, transparent);
-  }
-
-  .btn:focus-visible {
-    outline: 2px solid color-mix(in srgb, var(--color-brand) 45%, white);
-    outline-offset: 3px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .btn {
-      transition: none;
-    }
-  }
-
-  /* ===== Footer ===== */
-  .site-footer {
-    background-color: var(--color-surface);
-    border-top: 1px solid var(--color-border);
-    padding-top: 4rem;
-    padding-bottom: 3rem;
-  }
-
-  .footer-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-  }
-
-  .footer-top {
-    display: grid;
-    gap: 3rem;
-  }
-
-  @media (min-width: 768px) {
-    .footer-top {
-      grid-template-columns: 1.5fr 3fr;
-      align-items: start;
-    }
-  }
-
-  .footer-brand {
-    max-width: 320px;
-  }
-
-  .footer-logo {
-    text-decoration: none;
-    color: inherit;
-    display: inline-block;
-  }
-
-  .footer-logo-text {
-    font-size: 1.75rem;
-    font-weight: 700;
-    text-transform: lowercase;
-    letter-spacing: -0.02em;
-  }
-
-  .footer-description {
-    margin-top: 1rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-  }
-
-  .footer-columns {
-    display: grid;
-    gap: 2.5rem;
-  }
-
-  @media (min-width: 640px) {
-    .footer-columns {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .footer-columns {
-      grid-template-columns: repeat(4, 1fr);
-    }
-  }
-
-  .footer-heading {
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--color-text-primary);
-  }
-
-  .footer-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-link {
-    color: var(--color-text-secondary);
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 200ms ease;
-  }
-
-  .footer-link:hover,
-  .footer-link:focus-visible {
-    color: var(--color-brand);
-  }
-
-  .footer-bottom {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  @media (min-width: 768px) {
-    .footer-bottom {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-
-  .footer-social-list,
-  .footer-legal-list {
-    display: flex;
-    gap: 1.5rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-social-link,
-  .footer-legal-link {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color 200ms ease;
-  }
-
-  .footer-social-link:hover,
-  .footer-social-link:focus-visible,
-  .footer-legal-link:hover,
-  .footer-legal-link:focus-visible {
-    color: var(--color-text-primary);
-  }
-
-  .footer-copyright {
-    font-size: 0.875rem;
-    color: var(--color-text-muted);
-    margin: 0;
+    border-color: var(--color-brand);
   }
 }
