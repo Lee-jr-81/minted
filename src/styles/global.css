@@ -5,3 +5,33 @@
 
 @import "tailwindcss";
 @import "./tokens.css";
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35em; /* tweak for font size */
+  height: 1px; /* bar thickness */
+  background: var(--color-brand); /* my brand color */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 250ms ease;
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link::after {
+    transition: none;
+  }
+}

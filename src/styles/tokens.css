@@ -2,16 +2,16 @@
   :root {
     /* ===== BRAND COLOURS ===== */
 
-    --color-bg: #ffffff;
+    --color-bg: #ebf1ee;
     --color-surface: #f8f8f8;
     --color-border: #e5e5e5;
 
-    --color-text-primary: #111111;
+    --color-text-primary: #1b1b1b;
     --color-text-secondary: #666666;
     --color-text-muted: #999999;
 
-    --color-brand: #2563eb; /* your main brand */
-    --color-brand-soft: #eff6ff; /* light variant */
+    --color-brand: #00992e; /* main brand */
+    --color-brand-soft: #c0ffdc; /* light variant */
 
     /* ===== TYPOGRAPHY ===== */
 
@@ -47,5 +47,108 @@
 
   .text-brand {
     color: var(--color-brand);
+  }
+
+  /* This controls the standard width for the projects containers, along with the @media classes below */
+  .container-site {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Mobile / tablet side gutters */
+    padding-left: 1.5rem; /* 24px */
+    padding-right: 1.5rem;
+  }
+
+  /* Desktop container width */
+  @media (min-width: 1280px) {
+    .container-site {
+      max-width: 1280px;
+    }
+  }
+
+  /* Optional: cap for very large monitors */
+  @media (min-width: 1536px) {
+    .container-site {
+      max-width: 1600px;
+    }
+  }
+
+  /* this controls the standard vertical heights of the site sections. */
+  .section-site {
+    padding-top: 4rem; /* 64px */
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-site {
+      padding-top: 5rem; /* 80px */
+      padding-bottom: 5rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .section-site {
+      padding-top: 6rem; /* 96px */
+      padding-bottom: 6rem;
+    }
+  }
+}
+
+/* Reusable components in here like buttons and cards etc*/
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 40px; /* ← fixed button height */
+    padding: 0 1.25rem; /* horizontal padding only */
+
+    font-size: 0.875rem; /* 14px */
+    font-weight: 600;
+    line-height: 1; /* keeps vertical centering tight */
+
+    text-decoration: none;
+    white-space: nowrap;
+
+    border-radius: 9999px;
+    border: 1px solid transparent;
+
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .btn-primary {
+    background-color: var(--color-brand);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: color-mix(in srgb, var(--color-brand) 90%, black);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--color-brand);
+    border-color: var(--color-brand); /* outline = text colour */
+  }
+
+  .btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--color-brand) 8%, transparent);
+  }
+
+  .btn:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-brand) 45%, white);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn {
+      transition: none;
+    }
   }
 }

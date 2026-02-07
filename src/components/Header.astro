@@ -1,0 +1,63 @@
+---
+import {PiggyBank, MoveRight} from 'lucide-astro'
+
+const navItems = [
+  { name: 'About', href: '/about' },
+  { name: 'Pricing', href: '/pricing' },
+  { name: 'Features', href: '/features' },
+];
+---
+
+<header class="site-header transition-colors duration-500 hover:bg-white ">
+  <div class="container-site">
+    <div class="header-inner flex justify-between items-center md:py-8">
+
+      <!-- LEFT SIDE -->
+      <div class="header-left flex items-center gap-12">
+
+        <!-- Logo -->
+        <div class="header-logo">
+          <a href="/" class="logo-link flex items-center gap-2 text-brand">
+            <PiggyBank class="logo-icon" />
+            <span class="logo-text text-2xl uppercase font-bold text-primary">
+              Minted
+            </span>
+          </a>
+        </div>
+
+        <!-- Primary Navigation -->
+        <div class="hidden md:flex gap-8">
+           {navItems.map(item => (
+            <a href={item.href} class="text-xs uppercase tracking-widest font-bold nav-link">
+            {item.name}
+             </a>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="header-right flex gap-12 items-center">
+
+        <!-- Login -->
+        <div class="header-auth">
+          <a href="/login" class="login-link font-medium nav-link">Login</a>
+        </div>
+
+        <!-- CTA Group -->
+        <div class="flex gap-4">
+          <a href="/book-demo" class="btn btn-secondary">
+            Book a demo
+          </a>
+
+          <a href="/signup" class="btn btn-primary gap-2">
+            Try Minted
+            <MoveRight  />
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</header>
