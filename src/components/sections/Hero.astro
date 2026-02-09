@@ -1,0 +1,50 @@
+---
+import heroImage from "../../assets/images/dash.png"
+import {Image} from "astro:assets";
+---
+
+<section class="pt-12">
+  <div class="container-site">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+
+      <!-- LEFT COLUMN -->
+      <div class="flex flex-col gap-6">
+        <!-- Eyebrow -->
+        <p class="hero-eyebrow uppercase font-bold text-brand">
+          Modern finance platform
+        </p>
+
+        <!-- Main Heading -->
+        <h1 class="md:text-6xl text-4xl font-bold text-primary">
+          <span class="text-brand">Take control</span> of your company's financial operations
+        </h1>
+
+        <!-- Supporting Text -->
+        <p class="hero-subtext">
+          Manage projects, track profitability, and streamline your workflows — all in one powerful platform built for growing teams.
+        </p>
+
+        <!-- CTA Group -->
+        <div class="flex flex-wrap gap-4 mt-2">
+          <a href="/contact" class="btn btn-secondary">
+            Book a demo
+          </a>
+
+          <a href="/signup" class="btn btn-primary">
+            Try Minted
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="hero-media">
+        <Image
+          src={heroImage}
+          alt="Minted dashboard preview"
+          priority
+        />
+      </div>
+
+    </div>
+  </div>
+</section>
