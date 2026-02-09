@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+
+import logo1 from "../../assets/logos/logo-1.png";
+import logo2 from "../../assets/logos/logo-2.png";
+import logo3 from "../../assets/logos/logo-3.png";
+import logo4 from "../../assets/logos/logo-4.png";
+import logo5 from "../../assets/logos/logo-5.png";
+
+const logos = [
+  { src: logo1, alt: "Company 1" },
+  { src: logo2, alt: "Company 2" },
+  { src: logo3, alt: "Company 3" },
+  { src: logo4, alt: "Company 4" },
+  { src: logo5, alt: "Company 5" },
+];
+---
+
+
+<section class="section-site">
+  <div class="container-site">
+
+    <!-- Heading -->
+    <div class="text-center mb-12">
+      <p class="social-proof-eyebrow font-medium md:text-2xl">
+        <span class="font-bold">Trusted</span> by forward-thinking teams
+      </p>
+    </div>
+
+    <!-- Logo Grid -->
+    <div class="social-proof-logos">
+      <ul class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5 items-center">
+  {logos.map((logo) => (
+    <li class="flex items-center justify-center">
+      <Image
+        src={logo.src}
+        alt={logo.alt}
+        class="max-h-10 w-auto"
+      />
+    </li>
+  ))}
+</ul>
+
+    </div>
+
+  </div>
+</section>

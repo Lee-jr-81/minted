@@ -1,0 +1,55 @@
+---
+import { Image } from 'astro:assets';
+import { Check } from 'lucide-astro';
+import problemImage from "../../assets/images/transfer.png"
+---
+
+<section class="section-site">
+  <div class="container-site">
+
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+
+      <!-- LEFT: Image -->
+     <div class="hero-media">
+        <Image
+          src={problemImage}
+          alt="Minted dashboard preview"
+          priority
+          class=""
+        />
+      </div>
+      <!-- RIGHT: Content -->
+      <div class="problem-content">
+
+        <h2 class="problem-heading md:text-5xl text-3xl font-bold capitalize leading-tight">
+          Stop juggling <span class="text-brand">disconnected tools</span> and <unclear class="text-brand">unclear financial data</span>
+        </h2>
+
+        <ul class="problem-list flex flex-col gap-2">
+          <li class="problem-item mt-8 flex items-center gap-2">
+            <span class="problem-icon"><Check class="text-brand" size={20} strokeWidth={3} /></span>
+            <span class="font-medium text-sm md:text-xl">Gain real-time visibility into project profitability</span>
+          </li>
+
+          <li class="problem-item flex items-center gap-2">
+            <span class="problem-icon"><Check class="text-brand" size={20} strokeWidth={3} /></span>
+            <span class="font-medium text-sm md:text-xl">Eliminate manual reporting and spreadsheet chaos</span>
+          </li>
+
+          <li class="problem-item flex items-center gap-2">
+            <span class="problem-icon"><Check class="text-brand" size={20} strokeWidth={3} /></span>
+            <span class="font-medium text-sm md:text-xl">Align your team around accurate financial data</span>
+          </li>
+
+          <li class="problem-item flex items-center gap-2">
+            <span class="problem-icon"><Check class="text-brand" size={20} strokeWidth={3} /></span>
+            <span class="font-medium text-sm md:text-xl">Forecast revenue with confidence</span>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
