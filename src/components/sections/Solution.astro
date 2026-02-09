@@ -8,36 +8,49 @@ const solutions = [
     textColour: "text-blue-600",
     description: "Understand margins per project and client.",
     colour: "bg-blue-100",
+    shadow: "drop-shadow-[0_20px_40px_rgb(37,99,235)]"
   },
   {
     title: "Resource planning",
     textColour: "text-red-600",
     description: "Allocate people with confidence.",
     colour: "bg-red-100",
+    shadow: "drop-shadow-[0_20px_40px_rgb(220,38,38)]"
   },
   {
     title: "Time tracking",
     textColour: "text-green-600",
     description: "Capture time without friction whtsoever.",
     colour: "bg-green-100",
+    shadow: "drop-shadow-[0_20px_40px_rgb(22,163,74)]"
   },
   {
     title: "Forecasting",
     textColour: "text-orange-600",
     description: "Predict revenue and plan ahead.",
     colour: "bg-orange-100",
+    shadow: "drop-shadow-[0_20px_40px_rgb(234,88,12)]"
   },
   {
     title: "Reporting",
     textColour: "text-purple-600",
     description: "Automate insights for stakeholders.",
     colour: "bg-purple-100",
+    shadow: "drop-shadow-[0_20px_40px_rgb(147,51,234)]"
   },
   {
     title: "Reporting",
     textColour: "text-yellow-600",
     description: "Automate insights for stakeholders.",
     colour: "bg-yellow-100",
+    shadow: "drop-shadow-[0_20px_40px_rgb(202,138,4)]"
+  },
+  {
+    title: "Routing",
+    textColour: "text-pink-600",
+    description: "Rest assured finances arrive exactly.",
+    colour: "bg-pink-100",
+    shadow: "drop-shadow-[0_20px_40px_rgb(219,39,119)]"
   },
  
 ];
@@ -53,21 +66,24 @@ const solutions = [
         
       </div>
 
-      <div class="solution-controls flex gap-4" aria-label="Carousel controls">
-        <button type="button" class="solution-control text-primary hover:text-brand transition-colors duration-200" aria-label="Previous">
-          <CircleArrowLeft size={32} />
-        </button>
-        <button type="button" class="solution-control text-primary hover:text-brand transition-colors duration-200" aria-label="Next">
-          <CircleArrowRight size={32} />
-        </button>
+      <div class="solution-controls flex gap-4 items-end" aria-label="Carousel controls">
+        <button id="solutions-prev" type="button" class="solution-control text-muted hover:text-brand transition-colors duration-200" aria-label="Previous">
+    <CircleArrowLeft size={32} />
+  </button>
+        <button id="solutions-next" type="button" class="solution-control text-muted hover:text-brand transition-colors duration-200" aria-label="Next">
+    <CircleArrowRight size={32} />
+  </button>
       </div>
     </div>
 
     <!-- Row of cards -->
     <div class="solution-carousel" aria-label="Solutions">
-      <ul class="flex gap-6 overflow-x-auto scrollbar-hide">
+      <ul
+    id="solutions-track"
+    class="flex gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory"
+  >
   {solutions.map((item) => (
-  <li class="min-w-75">
+  <li class="min-w-75 snap-start">
   <article class="border border-border rounded-xl overflow-hidden">
     <div class={`relative p-6 ${item.colour} overflow-hidden min-h-70`}>
       <h3 class={`${item.textColour} font-semibold text-lg`}>
@@ -78,10 +94,12 @@ const solutions = [
         {item.description}
       </p>
 
+
+
       <Image
         src={cardImage}
         alt=""
-        class="absolute -bottom-15 left-1/2 -translate-x-1/2 w-2/3 h-48 object-contain"
+        class={`absolute -bottom-15 left-1/2 -translate-x-1/2 w-2/3 h-48 object-contain ${item.shadow}`}
       />
     </div>
   </article>
@@ -95,3 +113,58 @@ const solutions = [
     </div>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('solutions-track');
+  const prev = document.getElementById('solutions-prev');
+  const next = document.getElementById('solutions-next');
+
+  function getCards() {
+    if (!track) return [];
+    return Array.from(track.querySelectorAll('li'));
+  }
+
+  function getClosestCardIndex() {
+    if (!track) return 0;
+    const cards = getCards();
+    const left = track.scrollLeft;
+
+    let closestIndex = 0;
+    let closestDist = Infinity;
+
+    cards.forEach((card, i) => {
+      const dist = Math.abs(card.offsetLeft - left);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closestIndex = i;
+      }
+    });
+
+    return closestIndex;
+  }
+
+  function scrollToCard(index: number) {
+    if (!track) return;
+    const cards = getCards();
+    const clamped = Math.max(0, Math.min(index, cards.length - 1));
+    const target = cards[clamped];
+    if (!target) return;
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    track.scrollTo({
+      left: target.offsetLeft,
+      behavior: prefersReduced ? 'auto' : 'smooth',
+    });
+  }
+
+  prev?.addEventListener('click', () => {
+    const i = getClosestCardIndex();
+    scrollToCard(i - 1);
+  });
+
+  next?.addEventListener('click', () => {
+    const i = getClosestCardIndex();
+    scrollToCard(i + 1);
+  });
+</script>
