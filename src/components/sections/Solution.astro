@@ -1,0 +1,97 @@
+---
+import { CircleArrowLeft, CircleArrowRight } from 'lucide-astro';
+import { Image } from "astro:assets";
+import cardImage from "../../assets/images/cardImage.png";
+const solutions = [
+  {
+    title: "Profitability",
+    textColour: "text-blue-600",
+    description: "Understand margins per project and client.",
+    colour: "bg-blue-100",
+  },
+  {
+    title: "Resource planning",
+    textColour: "text-red-600",
+    description: "Allocate people with confidence.",
+    colour: "bg-red-100",
+  },
+  {
+    title: "Time tracking",
+    textColour: "text-green-600",
+    description: "Capture time without friction whtsoever.",
+    colour: "bg-green-100",
+  },
+  {
+    title: "Forecasting",
+    textColour: "text-orange-600",
+    description: "Predict revenue and plan ahead.",
+    colour: "bg-orange-100",
+  },
+  {
+    title: "Reporting",
+    textColour: "text-purple-600",
+    description: "Automate insights for stakeholders.",
+    colour: "bg-purple-100",
+  },
+  {
+    title: "Reporting",
+    textColour: "text-yellow-600",
+    description: "Automate insights for stakeholders.",
+    colour: "bg-yellow-100",
+  },
+ 
+];
+---
+
+
+<section class="section-site bg-white">
+  <div class="container-site">
+    <!-- Top row: heading + controls -->
+    <div class="solution-header flex justify-between items-end mb-12">
+      <div class="solution-heading max-w-1/2">
+        <h2 class="solution-title md:text-5xl text-3xl font-bold capitalize leading-tight">Explore how Minted helps teams <span class="text-brand">work smarter.</span></h2>
+        
+      </div>
+
+      <div class="solution-controls flex gap-4" aria-label="Carousel controls">
+        <button type="button" class="solution-control text-primary hover:text-brand transition-colors duration-200" aria-label="Previous">
+          <CircleArrowLeft size={32} />
+        </button>
+        <button type="button" class="solution-control text-primary hover:text-brand transition-colors duration-200" aria-label="Next">
+          <CircleArrowRight size={32} />
+        </button>
+      </div>
+    </div>
+
+    <!-- Row of cards -->
+    <div class="solution-carousel" aria-label="Solutions">
+      <ul class="flex gap-6 overflow-x-auto scrollbar-hide">
+  {solutions.map((item) => (
+  <li class="min-w-75">
+  <article class="border border-border rounded-xl overflow-hidden">
+    <div class={`relative p-6 ${item.colour} overflow-hidden min-h-70`}>
+      <h3 class={`${item.textColour} font-semibold text-lg`}>
+        {item.title}
+      </h3>
+
+      <p class={`mt-2 text-secondary ${item.textColour}`}>
+        {item.description}
+      </p>
+
+      <Image
+        src={cardImage}
+        alt=""
+        class="absolute -bottom-15 left-1/2 -translate-x-1/2 w-2/3 h-48 object-contain"
+      />
+    </div>
+  </article>
+</li>
+
+
+
+  ))}
+</ul>
+
+    </div>
+  </div>
+</section>
