@@ -2,9 +2,9 @@
 import { PiggyBank, MoveRight, X, Menu } from "lucide-astro";
 
 const navItems = [
-  { name: "About", href: "/about" },
-  { name: "Pricing", href: "/pricing" },
-  { name: "Features", href: "/features" },
+  { name: "About", href: "/" },
+  { name: "Pricing", href: "/" },
+  { name: "Features", href: "/" },
 ];
 ---
 
@@ -39,15 +39,15 @@ const navItems = [
         <!-- Login (desktop only) -->
          <div class="hidden md:block">
 
-           <a href="/login" class="hidden md:inline-block font-medium nav-link">
+           <a href="/" class="hidden md:inline-block font-medium nav-link">
             Login
           </a>
         </div>
 
         <!-- CTAs (desktop only) -->
         <div class="hidden md:flex gap-4">
-          <a href="/contact" class="btn btn-secondary">Book a demo</a>
-          <a href="/login" class="btn btn-primary gap-2">
+          <a href="/" class="btn btn-secondary">Book a demo</a>
+          <a href="/" class="btn btn-primary gap-2">
             Try Minted
             <MoveRight />
           </a>
