@@ -8,11 +8,11 @@ import logo4 from "../../assets/logos/logo-4.png";
 import logo5 from "../../assets/logos/logo-5.png";
 
 const logos = [
-  { src: logo1, alt: "Company 1" },
-  { src: logo2, alt: "Company 2" },
-  { src: logo3, alt: "Company 3" },
-  { src: logo4, alt: "Company 4" },
-  { src: logo5, alt: "Company 5" },
+  { src: logo1, alt: "Company 1", height: "max-h-12" },
+  { src: logo2, alt: "Company 2", height: "max-h-20" },
+  { src: logo3, alt: "Company 3", height: "max-h-12" },
+  { src: logo4, alt: "Company 4", height: "max-h-14" },
+  { src: logo5, alt: "Company 5", height: "max-h-28" },
 ];
 ---
 
@@ -21,7 +21,7 @@ const logos = [
   <div class="container-site">
 
     <!-- Heading -->
-    <div class="text-center mb-12">
+    <div class="text-center mb-16">
       <p class="social-proof-eyebrow font-medium md:text-2xl">
         <span class="font-bold">Trusted</span> by forward-thinking teams
       </p>
@@ -35,7 +35,7 @@ const logos = [
       <Image
         src={logo.src}
         alt={logo.alt}
-        class="max-h-10 w-auto"
+        class={`${logo.height} w-auto`}
       />
     </li>
   ))}

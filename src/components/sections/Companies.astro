@@ -1,0 +1,88 @@
+---
+import { CircleArrowLeft, CircleArrowRight } from 'lucide-astro';
+import { Image } from "astro:assets";
+import cardImage from "../../assets/images/cardImage.png";
+import ExcalonImg from "../../assets/images/ExcalonImg.png";
+import AWTXImg from "../../assets/images/AWTXImg.png";
+import HansonsImg from "../../assets/images/HansonsImg.png";
+const solutions = [
+  {
+    title: "Excalon",
+    image: ExcalonImg,
+    description: "27",
+    colour: "bg-blue-100",
+    
+  },
+  {
+    title: "AWTX",
+    image: AWTXImg,
+    description: "56",
+    colour: "bg-red-100",
+    
+  },
+  {
+    title: "Hansons",
+    image: HansonsImg,
+    description: "71",
+    colour: "bg-green-100",
+   
+  },
+
+ 
+ 
+];
+---
+
+
+<section class="section-site bg-white">
+  <div class="container-site">
+    <!-- Top row: heading + controls -->
+    <div class="solution-header flex justify-between items-end mb-12">
+      <div class="solution-heading max-w-1/2">
+        <h2 class="solution-title md:text-5xl text-3xl font-bold capitalize leading-tight">Discover how businesses thrive with  <span class="text-brand">minted.</span></h2>
+        
+      </div>
+
+      
+    </div>
+
+    <!-- Row of cards -->
+    <div class="solution-carousel" aria-label="Solutions">
+      <ul
+    id="solutions-track"
+    class="grid md:grid-cols-3 gap-8 md:gap-48"
+  >
+  {solutions.map((item) => (
+  <li class="min-w-75 snap-start">
+  <article class="border border-border rounded-xl ">
+    <div class={`relative p-6 ${item.colour} min-h-80`}>
+      <h3 class={`font-semibold text-3xl`}>
+        {item.title}
+      </h3>
+
+      <p class="mt-2 text-brand text-5xl font-bold">
+  {item.description}
+  <span class="text-gray-900 text-2xl align-top ">%</span>
+</p>
+
+
+
+
+      <Image
+        src={item.image}
+        alt="Customer Image"
+        class={`absolute -bottom-20 md:-bottom-13 right-10 md:-right-25 w-2/3 h-90 object-contain`}
+      />
+    </div>
+  </article>
+</li>
+
+
+
+  ))}
+</ul>
+
+    </div>
+  </div>
+</section>
+

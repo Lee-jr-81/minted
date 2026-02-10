@@ -1,0 +1,30 @@
+---
+import { Image } from "astro:assets";
+import Coord from "../../assets/images/coord.png"
+---
+
+<section class="section-site bg-white">
+  <div class="container-site">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      
+      <div class="coordination__content ">
+        <h2 class="coordination__title md:text-5xl text-3xl font-bold capitalize leading-tight">
+          Financial harmony. <span class="text-brand">Zero friction.</span>
+        </h2>
+
+        <p class="coordination__text mt-4">
+          When your accounts talk to each other, everything moves faster. 
+          Track spending, manage budgets, and stay aligned with your goals — 
+          all in one streamlined system built to keep up.
+        </p>
+
+        
+      </div>
+
+      <div class="coordination__media justify-self-end">
+        <Image src={Coord} alt="image of a finance dashboard" class="" />
+      </div>
+
+    </div>
+  </div>
+</section>
